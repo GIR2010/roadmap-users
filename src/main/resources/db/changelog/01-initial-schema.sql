@@ -1,43 +1,51 @@
---changeset my_name:01-initial-schema.sql
+--liquibase formatted sql
+--changeset giro77:01-initial-schema.sql
 
 -- create user
-CREATE USER ${DB_USERNAME} WITH PASSWORD '${DB_PASSWORD}';
+drop user if exists ${DB_USERNAME};
+create user ${DB_USERNAME} with password '${DB_PASSWORD}';
 
 -- create table
-CREATE TABLE posts (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    short_name VARCHAR NOT NULL,
-    is_lead BOOL NOT NULL DEFAULT FALSE
+create table posts (
+    id VARCHAR primary key,
+    name VARCHAR not null,
+    short_name VARCHAR not null,
+    is_lead BOOL not null default false
 );
 
-GRANT SELECT, INSERT, UPDATE, REFERENCES ON TABLE posts TO ${DB_USERNAME};
+-- grant table permissions
+grant select, insert, update, references on table posts to ${DB_USERNAME};
 
 --rollback DROP TABLE posts;
 
 -- create table
-CREATE TABLE streams (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    short_name VARCHAR NOT NULL,
-    lead_id INT references users(id) on delete set null on update cascade
+create table streams (
+    id VARCHAR primary key,
+    name VARCHAR not null,
+    short_name VARCHAR not null,
+    lead_id VARCHAR
 );
 
-GRANT SELECT, INSERT, UPDATE, REFERENCES ON TABLE streams TO ${DB_USERNAME};
+-- grant table permissions
+grant select, insert, update, references on table streams to ${DB_USERNAME};
 
 --rollback DROP TABLE streams;
 
 -- create table
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    surname VARCHAR NOT NULL,
+create table users (
+    id VARCHAR primary key,
+    name VARCHAR not null,
+    surname VARCHAR not null,
     second_name VARCHAR,
-    stream_id INT references streams(id) on delete set null on update cascade,
-    post_id INT references posts(id) on delete set null on update cascade,
+    stream_id VARCHAR references streams (id) on delete set null on update cascade,
+    post_id VARCHAR references posts (id) on delete set null on update cascade,
     avatar VARCHAR
 );
 
-GRANT SELECT, INSERT, UPDATE, REFERENCES ON TABLE users TO ${DB_USERNAME};
+alter table streams
+add constraint streams_lead_fk foreign key (lead_id) references users (id) on delete set null on update cascade;
+
+-- grant table permissions
+grant select, insert, update, references on table users to ${DB_USERNAME};
 
 --rollback DROP TABLE users;

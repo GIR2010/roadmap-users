@@ -99,7 +99,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.20.0</version>
                 <configuration>
-                    <propertyFileWillOverride>true</propertyFileWillOverride>
+<!--                    <propertyFileWillOverride>true</propertyFileWillOverride>-->
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                 </configuration>
                 <executions>
