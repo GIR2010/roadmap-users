@@ -1,6 +1,7 @@
 package com.roadmap.users.user
 
 import com.roadmap.users.post.Post
+import com.roadmap.users.stream.Stream
 import jakarta.persistence.*
 import java.util.*
 
@@ -13,8 +14,8 @@ class User(
     var surname: String? = null,
     @Column(name= "second_name")
     var secondName: String? = null,
-    @Column(name= "stream_id")
-    var streamId: String? = null,
+    @ManyToOne(cascade = [CascadeType.REMOVE])
+    var stream: Stream? = null,
     @ManyToOne(cascade = [CascadeType.REMOVE])
     var post: Post? = null,
     var avatar: String? = null
