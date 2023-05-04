@@ -1,7 +1,5 @@
-package com.roadmap.users.controller
+package com.roadmap.users.post
 
-import com.roadmap.users.entity.Post
-import com.roadmap.users.service.PostService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI

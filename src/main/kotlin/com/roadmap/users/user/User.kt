@@ -1,5 +1,6 @@
-package com.roadmap.users.entity
+package com.roadmap.users.user
 
+import com.roadmap.users.post.Post
 import jakarta.persistence.*
 import java.util.*
 

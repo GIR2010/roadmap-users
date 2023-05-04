@@ -1,6 +1,5 @@
-package com.roadmap.users.repository
+package com.roadmap.users.user
 
-import com.roadmap.users.entity.User
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserRepository : JpaRepository<User, String> {

@@ -1,6 +1,5 @@
-package com.roadmap.users.repository
+package com.roadmap.users.post
 
-import com.roadmap.users.entity.Post
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface PostRepository : JpaRepository<Post, String> {
