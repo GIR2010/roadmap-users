@@ -16,16 +16,4 @@ class UserService(private val userRepository: UserRepository) {
     fun updateUser(user: User): User = userRepository.save(user)
 
     fun deleteUser(id: String) = userRepository.deleteById(id)
-
-//    fun getUserById(id: String?): User {
-//        return userRepository.findById(id) //.orElse(null)
-//    }
-//
-//    fun updateUser(user: User?): User {
-//        return userRepository.save(user)
-//    }
-//
-//    fun deleteUserById(id: String?) {
-//        userRepository.deleteById(id)
-//    }
 }

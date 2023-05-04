@@ -1,9 +1,6 @@
 package com.roadmap.users.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.util.*
 
 @Entity
@@ -17,7 +14,17 @@ class User(
     var secondName: String? = null,
     @Column(name= "stream_id")
     var streamId: String? = null,
-    @Column(name= "post_id")
+    @ManyToOne(cascade = [CascadeType.REMOVE])
+    var post: Post? = null,
+    var avatar: String? = null
+)
+
+data class UserModel(
+    val id: String = UUID.randomUUID().toString(),
+    var name: String? = null,
+    var surname: String? = null,
+    var secondName: String? = null,
+    var streamId: String? = null,
     var postId: String? = null,
     var avatar: String? = null
 )
