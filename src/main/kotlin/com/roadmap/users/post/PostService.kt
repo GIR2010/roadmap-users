@@ -1,8 +1,6 @@
-package com.roadmap.users.service
+package com.roadmap.users.post
 
 
-import com.roadmap.users.entity.Post
-import com.roadmap.users.repository.PostRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 

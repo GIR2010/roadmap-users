@@ -1,7 +1,5 @@
-package com.roadmap.users.service
+package com.roadmap.users.user
 
-import com.roadmap.users.entity.User
-import com.roadmap.users.repository.UserRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 

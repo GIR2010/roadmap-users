@@ -1,9 +1,6 @@
-package com.roadmap.users.controller
+package com.roadmap.users.user
 
-import com.roadmap.users.entity.User
-import com.roadmap.users.entity.UserModel
-import com.roadmap.users.service.UserService
-import com.roadmap.users.service.PostService
+import com.roadmap.users.post.PostService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI

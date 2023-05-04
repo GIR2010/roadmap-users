@@ -1,4 +1,4 @@
-package com.roadmap.users.entity
+package com.roadmap.users.post
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
