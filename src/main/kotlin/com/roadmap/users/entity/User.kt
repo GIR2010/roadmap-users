@@ -11,13 +11,13 @@ import java.util.*
 class User(
     @Id
     val id: String = UUID.randomUUID().toString(),
-    val name: String? = null,
-    val surname: String? = null,
+    var name: String? = null,
+    var surname: String? = null,
     @Column(name= "second_name")
-    val secondName: String? = null,
+    var secondName: String? = null,
     @Column(name= "stream_id")
-    val streamId: String? = null,
+    var streamId: String? = null,
     @Column(name= "post_id")
-    val postId: String? = null,
-    val avatar: String? = null
+    var postId: String? = null,
+    var avatar: String? = null
 )
