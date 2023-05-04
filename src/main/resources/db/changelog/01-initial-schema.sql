@@ -1,10 +1,6 @@
 --liquibase formatted sql
 --changeset giro77:01-initial-schema.sql
 
--- create user
-drop user if exists ${DB_USERNAME};
-create user ${DB_USERNAME} with password '${DB_PASSWORD}';
-
 -- create table
 create table posts (
     id VARCHAR primary key,
