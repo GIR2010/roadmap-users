@@ -1,13 +1,18 @@
 package com.roadmap.users.user
 
 import com.roadmap.users.post.PostService
+import com.roadmap.users.stream.StreamService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.net.URI
 
 @RestController
 @RequestMapping("/users")
-class UserController(private val userService: UserService, private val postService: PostService) {
+class UserController(
+        private val userService: UserService,
+        private val postService: PostService,
+        private val streamService: StreamService,
+    ) {
 
     @GetMapping
     fun getUser(): ResponseEntity<List<User>> {
@@ -24,15 +29,16 @@ class UserController(private val userService: UserService, private val postServi
     @PostMapping
     fun createUser(@RequestBody user: UserModel): ResponseEntity<User> {
         val post = if (user.postId != null) postService.getPostById(user.postId!!) else null
-        val userModel = User(
+        val stream = if (user.streamId != null) streamService.getStreamById(user.streamId!!) else null
+        val newUser = User(
             name = user.name,
             surname = user.surname,
             secondName = user.secondName,
             avatar = user.avatar,
-            streamId = user.streamId,
+            stream = stream,
             post = post
         )
-        val createdUser = userService.createUser(userModel)
+        val createdUser = userService.createUser(newUser)
         return ResponseEntity.created(URI.create("/${createdUser.id}")).body(createdUser)
     }
 
@@ -40,10 +46,11 @@ class UserController(private val userService: UserService, private val postServi
     fun updateUser(@PathVariable("id") id: String, @RequestBody user: UserModel): ResponseEntity<User> {
         val existingUser = userService.getUserById(id) ?: return ResponseEntity.notFound().build()
         val post = if (user.postId != null) postService.getPostById(user.postId!!) else null
+        val stream = if (user.streamId != null) streamService.getStreamById(user.streamId!!) else null
         existingUser.name = user.name
         existingUser.surname = user.surname
         existingUser.secondName = user.secondName
-        existingUser.streamId = user.streamId
+        existingUser.stream = stream
         existingUser.post = post
         existingUser.avatar = user.avatar
         val updatedUser = userService.updateUser(existingUser)
