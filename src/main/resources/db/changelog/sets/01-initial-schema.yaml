@@ -1,0 +1,117 @@
+version: 1.0
+
+databaseChangeLog:
+  - changeSet:
+      id: 01-add-posts-table
+      author: GI
+      changes:
+        - createTable:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  type: varchar
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: short_name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_lead
+                  type: boolean
+                  defaultValueBoolean: false
+            remarks: 'Post table'
+  - changeSet:
+      id: 02-add-streams-table
+      author: GI
+      changes:
+        - createTable:
+            tableName: streams
+            columns:
+              - column:
+                  name: id
+                  type: varchar
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: short_name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_id
+                  type: varchar
+                  constraints:
+                    nullable: true
+            remarks: 'Stream table'
+  - changeSet:
+      id: 03-add-users-table
+      author: GI
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: VARCHAR(255)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: second_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: stream_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+                    foreignKeyName: users_stream_fk
+                    referencedTableName: streams
+                    referencedColumnNames: id
+                    onDelete: setNull
+                    onUpdate: cascade
+              - column:
+                  name: post_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+                    foreignKeyName: users_post_fk
+                    referencedTableName: posts
+                    referencedColumnNames: id
+                    onDelete: setNull
+                    onUpdate: cascade
+              - column:
+                  name: avatar
+                  type: VARCHAR(255)
+            foreignKeys:
+              - foreignKey:
+                  name: streams_lead_fk
+                  referencedTableName: users
+                  referencedColumnNames: id
+                  baseColumnNames: lead_id
+                  onDelete: setNull
+                  onUpdate: cascade
+            remarks: 'Users table'

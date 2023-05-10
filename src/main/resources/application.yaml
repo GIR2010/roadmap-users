@@ -6,7 +6,7 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   liquibase:
-    change-log: db/changelog/db.changelog-master.xml
+    change-log: db/changelog/db.changelog-master.yaml
     default-schema: public
 
   # Additional Hibernate properties
