@@ -9,9 +9,9 @@ import java.net.URI
 @RestController
 @RequestMapping("/users")
 class UserController(
-        private val userService: UserService,
-        private val postService: PostService,
-        private val streamService: StreamService,
+    private val userService: UserService,
+    private val postService: PostService,
+    private val streamService: StreamService,
     ) {
 
     @GetMapping
