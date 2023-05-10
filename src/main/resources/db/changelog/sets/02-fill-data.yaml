@@ -1,0 +1,243 @@
+version: 1.0
+
+databaseChangeLog:
+  - changeSet:
+      id: 04-fill-streams
+      author: GI
+      changes:
+        - insert:
+            tableName: streams
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Стрим МК
+              - column:
+                  name: short_name
+                  value: МК
+        - insert:
+            tableName: streams
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Стрим АГ
+              - column:
+                  name: short_name
+                  value: АГ
+      rollback:
+        - delete:
+            tableName: streams
+  - changeSet:
+      id: 05-fill-posts
+      author: GI
+      changes:
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Большой Брат
+              - column:
+                  name: short_name
+                  value: BB
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Аналитик
+              - column:
+                  name: short_name
+                  value: АА
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Бизнес Аналитик
+              - column:
+                  name: short_name
+                  value: БА
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Дизайнер UX/UI
+              - column:
+                  name: short_name
+                  value: UI
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Системный Аналитик
+              - column:
+                  name: short_name
+                  value: СА
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Back-end разработчик
+              - column:
+                  name: short_name
+                  value: BE
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Front-end разработчик
+              - column:
+                  name: short_name
+                  value: FE
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Аналитик данных
+              - column:
+                  name: short_name
+                  value: DA
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Тестировщик
+              - column:
+                  name: short_name
+                  value: QA
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: DJango разработчик
+              - column:
+                  name: short_name
+                  value: DJ
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Python разработчик
+              - column:
+                  name: short_name
+                  value: PY
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Мобильная разработка
+              - column:
+                  name: short_name
+                  value: MD
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Разработчик Data Service
+              - column:
+                  name: short_name
+                  value: DS
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: Поставка данных
+              - column:
+                  name: short_name
+                  value: DD
+        - insert:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: DevOps
+              - column:
+                  name: short_name
+                  value: DO
+      rollback:
+        - delete:
+            tableName: posts
+  - changeSet:
+      id: 06-fill-users
+      author: GI
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: gen_random_uuid()
+              - column:
+                  name: name
+                  value: viewer
+              - column:
+                  name: surname
+                  value: demo
+              - column:
+                  name: post_id
+                  valueComputed: (select id from posts where short_name = 'BB')
+      rollback:
+        - delete:
+            tableName: users
