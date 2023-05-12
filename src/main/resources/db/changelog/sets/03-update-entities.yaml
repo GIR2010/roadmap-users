@@ -1,0 +1,217 @@
+databaseChangeLog:
+  - changeSet:
+      id: 07-alter-tables-users-stream-posts
+      author: GI
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: order_id
+                  type: integer
+                  defaultValueNumeric: 10
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  defaultValueDate: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: datetime
+                  defaultValueDate: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+        - addColumn:
+            tableName: streams
+            columns:
+              - column:
+                  name: order_id
+                  type: integer
+                  defaultValueNumeric: 10
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+                  defaultValueDate: now()
+              - column:
+                  name: updated_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+                  defaultValueDate: now()
+              - column:
+                  name: is_active
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+        - addColumn:
+            tableName: posts
+            columns:
+              - column:
+                  name: order_id
+                  type: integer
+                  defaultValueNumeric: 10
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+                  defaultValueDate: now()
+              - column:
+                  name: updated_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+                  defaultValueDate: now()
+              - column:
+                  name: is_active
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: true
+  - changeSet:
+      id: 08-fill-streams
+      author: GI
+      changes:
+        - update:
+            tableName: streams
+            where: short_name = 'МК'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 10
+        - update:
+            tableName: streams
+            where: short_name = 'АГ'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 20
+      rollback:
+        - empty: {}
+  - changeSet:
+      id: 09-fill-posts
+      author: GI
+      changes:
+        - update:
+            tableName: posts
+            where: short_name = 'BB'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 10
+        - update:
+            tableName: posts
+            where: short_name = 'АА'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 20
+        - update:
+            tableName: posts
+            where: short_name = 'БА'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 30
+        - update:
+            tableName: posts
+            where: short_name = 'UI'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 40
+        - update:
+            tableName: posts
+            where: short_name = 'СА'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 50
+        - update:
+            tableName: posts
+            where: short_name = 'BE'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 60
+        - update:
+            tableName: posts
+            where: short_name = 'FE'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 70
+        - update:
+            tableName: posts
+            where: short_name = 'DA'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 80
+        - update:
+            tableName: posts
+            where: short_name = 'QA'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 90
+        - update:
+            tableName: posts
+            where: short_name = 'DJ'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 100
+        - update:
+            tableName: posts
+            where: short_name = 'PY'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 110
+        - update:
+            tableName: posts
+            where: short_name = 'MD'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 120
+        - update:
+            tableName: posts
+            where: short_name = 'DS'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 130
+        - update:
+            tableName: posts
+            where: short_name = 'DD'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 140
+        - update:
+            tableName: posts
+            where: short_name = 'DO'
+            columns:
+              - column:
+                  name: order_id
+                  valueNumeric: 150
+      rollback:
+        - empty: {}
